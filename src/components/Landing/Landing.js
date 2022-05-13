@@ -5,7 +5,7 @@ const Landing = () => {
     return (
         <div className="create">
             <h1>Super Simple Blog</h1>
-            <div>
+            <div className="login-register">
                 <Link to="/login">
                     <button type="button">Login</button>
                 </Link>

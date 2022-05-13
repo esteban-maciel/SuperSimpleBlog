@@ -158,6 +158,10 @@ code {
   margin-bottom: 30px;
 }
 
-.register-button {
+.login-register {
   margin-top: 20px;
+}
+
+.login-register button {
+  margin: 20px;
 }

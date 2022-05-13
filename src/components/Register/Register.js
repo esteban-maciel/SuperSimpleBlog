@@ -19,9 +19,8 @@ const Register = () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user)
         })
-        .then((res) => {
-            setIsPending(false);
-            navigate("/login", { replace: true});
+        .then(() => {
+            navigate("/login", {replace: true});
         });
     }
 

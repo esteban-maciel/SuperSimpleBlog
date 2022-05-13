@@ -1,29 +1,29 @@
+import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isPending, setIsPending] = useState(false);
+    const [isPending, setIsPending] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const user = { username, password };
-
+        const user = {username, password};
         setIsPending(true);
 
-        fetch('http://localhost:8080/login', {
+        const token = await fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user)
-        })
-        .then(response => response.json())
-        .then(token => {
-            localStorage.setItem('token', token);
-        }).catch((err) => {
-            console.log(err);
-        })
+        });
+
+        localStorage.setItem('token', await token.text());
+        console.log("Fetch done");
+        navigate('/home', {replace: true});
+
     }
 
     return (
@@ -46,9 +46,12 @@ const Login = () => {
                 />
                 {!isPending && <button type="submit">Log In</button>}
                 {isPending && <button disabled>Logging In</button>}
+                <div>
+                    <Link to="/register">Register</Link>
+                </div>
             </form>
         </div>
-    )
+    );
 }
 
 export default Login;

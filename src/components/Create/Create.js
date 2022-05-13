@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const Create = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('Shubham');
     const [isPending, setIsPending] = useState(false);
-    const history = useNavigate();
+    const navigate = useNavigate();
+    const author = localStorage.getItem("user");
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,7 +20,7 @@ const Create = () => {
             body: JSON.stringify(blog)
         }).then(() => {
             setIsPending(false);
-            history.push('/');
+            navigate("/home", {replace: true});
         })
     }
 
@@ -42,14 +42,7 @@ const Create = () => {
                     onChange={(e) => setBody(e.target.value)}
                 />
                 <label>Blog Author</label>
-                <select
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
-                >
-                    <option value="Shubham">Shubham</option>
-                    <option value="Satyam">Satyam</option>
-                    <option value="Anmol">Anmol</option>
-                </select>
+                <p>{author}</p>
                 {!isPending && <button type="submit">Add Blog</button>}
                 {isPending && <button disabled>Adding Blog</button>}
             </form>

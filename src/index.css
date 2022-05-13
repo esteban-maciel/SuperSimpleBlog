@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
 
+.App {
+  margin-top: 20px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -109,6 +113,14 @@ code {
   box-sizing: border-box;
   display: block;
 }
+.create p {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
 .create button {
   background: #f1356d;
   color: #fff;
@@ -144,4 +156,8 @@ code {
   font-size: 20px;
   color: #f1356d;
   margin-bottom: 30px;
+}
+
+.register-button {
+  margin-top: 20px;
 }

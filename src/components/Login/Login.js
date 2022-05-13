@@ -19,11 +19,12 @@ const Login = () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user)
         });
+        
 
         localStorage.setItem('token', await token.text());
-        console.log("Fetch done");
-        navigate('/home', {replace: true});
-
+        localStorage.setItem('user', username);
+        localStorage.setItem("loggedIn", true); 
+        navigate("/home", {replace: true});
     }
 
     return (
@@ -46,7 +47,7 @@ const Login = () => {
                 />
                 {!isPending && <button type="submit">Log In</button>}
                 {isPending && <button disabled>Logging In</button>}
-                <div>
+                <div className="register-button">
                     <Link to="/register">Register</Link>
                 </div>
             </form>

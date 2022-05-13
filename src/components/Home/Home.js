@@ -10,7 +10,6 @@ const Home = () => {
             <Navbar/>
             {error && <div>{error}</div>}
             {isPending && <div>{isPending}</div>}
-
             <BlogList blogs={blogs} title="All Blogs"/>
         </div>
     );

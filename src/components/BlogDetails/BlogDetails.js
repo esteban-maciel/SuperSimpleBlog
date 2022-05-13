@@ -1,39 +1,34 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
+import UseFetch from '../UseFetch/UseFetch';
 
-const BlogDetails = (id) => {
-    //const { id } = useParams();
-    //const { data:  blog, error, isPending } = UseFetch('http://localhost:8000/blogs/' + id);
-    const navigate = Navigate();
-
-    const blog = (id) => {
-        fetch('http://localhost:8080/blogs/' + id, {
-            method: 'GET'
-        }).then((blog) => {
-            //let isPending = false;
-            navigate.push('/');
-        })
-    }
+const BlogDetails = () => {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const { data: blog, error, isPending } =  UseFetch('http://localhost:8080/blogs/' + id);
 
     const handleClick = () => {
-        fetch('http://localhost:8080/blogs/' + blog.id, {
+        fetch('http://localhost:8080/blogs/' + blog._id, {
             method: 'DELETE'
         }).then(() => {
-            navigate.push('/');
+            navigate("/home", {replace: true});
         })
     }
 
-    return (
+    const belongsToUser = (blog.author === localStorage.getItem("user"));
+
+    return ( 
         <div className="blog-details">
-            <h1>{id}</h1>
-            
+            {isPending && <div>Loading...</div>}
+            {error && <div>{error}</div>}
             <article >
                 <h2>{blog.title}</h2>
                 <p>Written by {blog.author}</p>
                 <div>{blog.body}</div>
-                <button onClick={handleClick}>Delete</button>
+                {belongsToUser && <button onClick={handleClick}>Delete</button>}
+                
             </article>
         </div>
-    );
+     );
 }
-
+ 
 export default BlogDetails;

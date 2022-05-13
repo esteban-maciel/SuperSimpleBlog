@@ -1,9 +1,21 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
+
     return (
-        <div>
-            <h1>Landing Page</h1>
+        <div className="create">
+            <h1>Super Simple Blog</h1>
+            <div>
+                <Link to="/login">
+                    <button type="button">Login</button>
+                </Link>
+                <Link to="/register">
+                    <button type="button">Register</button>
+                </Link>
+            </div>
+
+            
+            
         </div>
     );
 }

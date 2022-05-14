@@ -13,18 +13,14 @@ import Landing from './components/Landing/Landing';
 
 function App() {
 
-  const isLoggedIn = localStorage.getItem("loggedIn");
+  //const isLoggedIn = localStorage.getItem("loggedIn");
 
   return (
     <div className="App">
       
       <Router>
         <Routes>
-          <Route path='/home' element={
-            <Protected isLoggedIn={isLoggedIn}>
-              <Home />
-            </Protected>
-          } />
+          <Route path='/home' element={<Home />} />
           <Route path="/logout" element={<Logout/>} />
           <Route path='/' element={<Landing/>} />
           <Route path='/register' element={<Register/>} />
